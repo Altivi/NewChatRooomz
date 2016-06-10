@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_attached_file :avatar, styles: { thumb: "100x100#" }, default_url: "/images/:style/missing.png",
-				    storage: :dropbox,
-				    dropbox_credentials: Rails.root.join("config/dropbox.yml"),
-				    dropbox_options: {  path: proc { |style| "avatars/#{id}/#{avatar.original_filename}" } }
+  has_attached_file :avatar, styles: { thumb: "100x100#" }, default_url: "/images/:style/missing.png"
+				    # storage: :dropbox,
+				    # dropbox_credentials: Rails.root.join("config/dropbox.yml"),
+				    # dropbox_options: {  path: proc { |style| "avatars/#{id}/#{avatar.original_filename}" } }
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates_presence_of :nickname, if: :active_or_choose_nickname?

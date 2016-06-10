@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   
-  before_action :authenticate_user!
+  before_action :set_room, only: [:show, :destroy]
 
   def index
     @rooms = Room.all.includes(:creator).page(params[:page]).per_page(10)
@@ -8,7 +8,6 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
     @new_message = @room.messages.build
     if params[:chat_msg_id]
       @messages = @room.messages.get_more_messages(10,params[:chat_msg_id])
@@ -38,9 +37,21 @@ class RoomsController < ApplicationController
   end
 
   def destroy
+    @room.destroy if @room.creator == current_user
+    respond_to do |format|
+      format.html { 
+        flash[:success] = "Room successfully deleted"
+        redirect_to user_path(@room.creator)
+      }
+      format.js
+    end
   end
 
   private
+
+    def set_room
+      @room = Room.find(params[:id])
+    end
 
     def room_params
       params.require(:room).permit(:title, :creator)

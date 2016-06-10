@@ -4,8 +4,13 @@
 			<%= link_to "", room_path(room), class: "room_icon glyphicon glyphicon-home" %>
 		</div>
 		<div class="col-md-8">
-			<h4><%= room.title %></h4>
-			<h5><%= room.creator.email %></h5>
+			<h4>Room: <%= room.title %></h4>
+			<% if room.creator == current_user %>
+				<h5>Creator: You</h5>
+				<%= link_to "x", room_path(room), method: :delete, remote: true, confirm: "Are u sure?" %>
+			<% else %>
+				<%= room.creator.nickname %>
+			<% end %>
 		</div>
 	<% end %>
 </li>

@@ -6,4 +6,5 @@ class Message < ActiveRecord::Base
   scope :get_more_messages,  lambda { |num, first_msg_id| where('id < ?', first_msg_id).includes(:author).last_messages(num)}
 
   validates_presence_of :content, :room_id, :author_id
+  validates :content, length: { maximum: 1000 }
 end

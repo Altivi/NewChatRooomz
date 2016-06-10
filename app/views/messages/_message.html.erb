@@ -1,13 +1,14 @@
 <% unless message.nil? || message.new_record? %>
 	<%= content_tag :li, id: "message_#{message.id}", class: "message #{self_or_other(message)}", data: { id: message.id } do %>
 		<div class="avatar">
-	    	<%= image_tag message.author.fast_avatar_url %>
+	    	<%= image_tag message.author.avatar.url(:thumb) %>
 	  	</div>
 	  	<div class="chatboxmessagecontent">
 			<p><%= message.content %></p>
 			<time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime("%d %b  %Y at %I:%M%p") %>">
 				<%= message.author.nickname %> • <%= message.created_at.strftime("%H:%M %p") %>
 			</time>
+			<%= link_to "", room_message_path(@room, message),class: "glyphicon glyphicon-remove-sign" , method: :delete, remote: true %>
 		</div>
 	<% end %>
 <% end %>
