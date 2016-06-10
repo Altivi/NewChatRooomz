@@ -1,0 +1,9 @@
+<%= form_for @room, remote: true do |f| %>
+	<div class="form-group">
+		<%= f.label :title %>
+		<%= f.text_field :title, class: "form-control" %>
+	</div>
+	<div class="actions">
+		<%= f.submit "Create room", class: "btn btn-default btn-lg btn-block" %>
+	</div>
+<% end %>

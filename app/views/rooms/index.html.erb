@@ -1,0 +1,54 @@
+
+<div class="page-header">
+	<div class="row">
+	  	<div class="col-md-8 col-sm-6 col-xs-6">
+	  		<h1>All rooms</h1>
+	  	</div>
+	  	<div class="col-md-4 col-sm-6 col-xs-6">
+	  		
+		  	<!-- Trigger the modal with a button -->
+			<%= link_to("Create new room", '#', id: "new_room_button" ,class: "btn btn-danger btn-lg pull-right", data: { toggle: "modal", target: "#newRoomModal" }) %>
+	  	</div>
+	</div>
+</div>	
+
+
+
+<div class="panel panel-default">
+  	<div class="panel-body">
+	  	<ul id="all_rooms" class="list-group col-md-8 col-md-offset-2">
+	  		<div class="row">
+	  			<div class="col-md-8 col-md-offset-2">
+	  				<%= will_paginate @rooms, class: "pagination-sm", previous_label: "<<", next_label: ">>", inner_window: 1 %>
+	  			</div>
+	  		</div>	
+	    	<%= render @rooms %>
+	    	<div class="row">
+	  			<div class="col-md-8 col-md-offset-2">
+	  				<%= will_paginate @rooms, class: "pagination-sm", previous_label: "<<", next_label: ">>", inner_window: 1 %>
+	  			</div>
+	  		</div>	
+		</ul>
+	</div>
+</div>
+
+
+
+<!-- Modal -->
+<div id="newRoomModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Open your own room!</h4>
+			</div>
+			<div class="modal-body">
+				<%= render 'form' %>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

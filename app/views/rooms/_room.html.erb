@@ -1,0 +1,11 @@
+<li class="list-group-item">
+	<%= div_for room , class: "row" do%>
+		<div class="col-md-4">
+			<%= link_to "", room_path(room), class: "room_icon glyphicon glyphicon-home" %>
+		</div>
+		<div class="col-md-8">
+			<h4><%= room.title %></h4>
+			<h5><%= room.creator.email %></h5>
+		</div>
+	<% end %>
+</li>

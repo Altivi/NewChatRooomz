@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <h2>Personalize</h2>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= form_for(resource, as: resource_name, url: auth_settings_profile_path, html: { method: :put, :multipart => true }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="form-group">
+            <%= f.label :nickname %>
+            <%= f.text_field :nickname, autocomplete: "off", class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :avatar %>
+            <%= f.file_field :avatar, class: "filestyle", data: { buttonBefore: true, buttonText: "Choose avatar"} %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Update", class: "btn btn-default btn-lg btn-block" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

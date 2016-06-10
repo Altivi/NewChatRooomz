@@ -1,0 +1,22 @@
+
+<div class="center jumbotron">
+	<div class="row">
+	    <div class="col-md-8">
+		    <h1>Welcome to the ChatRooomz</h1>
+		    <h2>
+		      This is the home page
+		    </h2>
+	     </div>
+		 <div class="col-md-4">
+		    <h2>Sign up now!</h2>
+		    
+		    <%= devise_error_messages! %>
+	    
+			<div class="panel panel-default">
+				<div class="panel-body">
+	    			<%= render 'devise/registrations/form' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
