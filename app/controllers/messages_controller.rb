@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
 
   def destroy
     @message = @room.messages.find(params[:id])
-    @message.destroy
+    @message.delete_for(current_user)
     respond_to do |format|
       format.html { redirect_to room_url(@room) }
       format.js

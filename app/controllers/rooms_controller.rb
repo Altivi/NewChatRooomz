@@ -10,9 +10,9 @@ class RoomsController < ApplicationController
   def show
     @new_message = @room.messages.build
     if params[:chat_msg_id]
-      @messages = @room.messages.get_more_messages(10,params[:chat_msg_id])
+      @messages = @room.messages.remaining_messages(current_user).get_more_messages(10,params[:chat_msg_id])
     else
-      @messages = @room.messages.last_messages(10)
+      @messages = @room.messages.remaining_messages(current_user).last_messages(10)
     end
     respond_to do |format|
       format.html

@@ -4,10 +4,10 @@
     var reciever_id = $('meta[name=user-id]').attr("content");
 	$(".chatboxcontent").append("<%= escape_javascript(render @message) %>");
 	chatbox.scrollTop(chatbox[0].scrollHeight);
-	$(".chatboxtextarea").val('');
 
 	if(sender_id != reciever_id){
     	chatbox.children().last().removeClass("self").addClass("other");        
     	chatbox.scrollTop(chatbox[0].scrollHeight);
     }
 <% end %>
+$(".chatboxtextarea").val('');

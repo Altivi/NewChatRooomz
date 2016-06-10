@@ -7,7 +7,7 @@
 	</div>
 	<div class="chatboxcontent">
 		<% if @messages.any? %>
-			<% unless @room.messages.count < 10 %>
+			<% if @room.messages.remaining_messages(current_user).count > 10 %>
 				<%= image_tag "spin.gif", style: "display:none;", class: "center-block loading-gif" %>
 				<%= link_to "Load More", room_path(@room), class: "btn btn-danger center-block load-more" %>
 			<% end %>

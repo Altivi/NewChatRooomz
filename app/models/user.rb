@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :rooms, foreign_key: :creator_id
   has_many :messages, foreign_key: :author_id
+  has_many :deleted_messages
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
@@ -14,7 +15,7 @@ class User < ActiveRecord::Base
 				    dropbox_options: {  path: proc { |style| "avatars/#{id}/#{avatar.original_filename}" } }
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  validates_presence_of :nickname, if: :active_or_choose_nickname?
+  validates :nickname, presence: true, length: { in: 2..30 } , if: :active_or_choose_nickname?
 
   after_save :save_slow_url
 

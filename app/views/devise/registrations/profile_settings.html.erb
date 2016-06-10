@@ -4,7 +4,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <%= form_for(resource, as: resource_name, url: auth_settings_profile_path, html: { method: :put, :multipart => true }) do |f| %>
-          <%= devise_error_messages! %>
+          <%= render 'shared/error_messages', object: resource %>
 
           <div class="form-group">
             <%= f.label :nickname %>

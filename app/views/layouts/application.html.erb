@@ -4,7 +4,7 @@
   <title>ChatRooomz</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
+  <meta content='<%= user_id %>' name='user-id'/>
   <%= csrf_meta_tags %>
 </head>
 <body>
