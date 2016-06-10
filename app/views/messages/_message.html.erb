@@ -1,7 +1,7 @@
 <% unless message.nil? || message.new_record? %>
 	<%= content_tag :li, id: "message_#{message.id}", class: "message #{self_or_other(message)}", data: { id: message.id } do %>
 		<div class="avatar">
-	    	<%= image_tag message.author.avatar.url(:thumb) if avatar_exists?(message) %>
+	    	<%= image_tag message.author.avatar.url(:thumb) if avatar_present?(message) %>
 	  	</div>
 	  	<div class="chatboxmessagecontent">
 			<p><%= message.content %></p>

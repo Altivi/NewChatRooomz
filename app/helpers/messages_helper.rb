@@ -3,7 +3,7 @@ module MessagesHelper
 		message.author == current_user ? "self" : "other"
 	end
 
-	def avatar_exists?(message)
-		message.author.fast_avatar_url.exists?
+	def avatar_present?(message)
+		message.author.fast_avatar_url.present?
 	end
 end
