@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
-  
-  # before_action :authenticate_user!
+
   before_action :set_message_room
   
   def create
