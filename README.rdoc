@@ -1,28 +1,16 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ChatRooomz - chat application allows you to create a chat rooms in which many users can enter for your communication.
 
-Things you may want to cover:
+About:
 
-* Ruby version
+* Application use https://github.com/Altivi/heroku_private_pub as messaging server
 
-* System dependencies
+* Faye, PrivatePub
 
-* Configuration
+* PostgreSQL
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* AJAX
 
 * ...
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
