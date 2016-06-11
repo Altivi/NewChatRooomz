@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   resources :rooms do
     resources :messages
+    collection { post :search, to: 'rooms#index' }
   end
  
   # The priority is based upon order of creation: first created -> highest priority.

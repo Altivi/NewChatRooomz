@@ -58,13 +58,19 @@
     min-width: 100px;
     position: relative;
 }
+
+.chatboxcontent .without_avatar {
+    width: 100px;
+    position: relative;
+}
  
 .chatboxcontent .avatar img {
     display: block;
     width: 100%;
 }
  
-.other .avatar:after {
+.other {
+    .avatar:after {
     content: "";
     position: absolute;
     top: 0;
@@ -73,7 +79,11 @@
     height: 0;
     border: 5px solid white;
     border-left-color: transparent;
-    border-bottom-color: transparent;
+    border-bottom-color: transparent; }
+    .chatboxmessagecontent {
+        a {
+            float: left; }   
+    }
 }
  
 .self {
@@ -86,10 +96,18 @@
     border-bottom-right-radius: 0;
     width: 45%;
     height: 75px;
+    a {
+        float: right;
+    }
 }
  
 .self .avatar {
     order: 2;
+}
+
+.self .without_avatar {
+    order: 2;
+    font-size: 18px
 }
  
 .self .avatar:after {

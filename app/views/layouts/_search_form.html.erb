@@ -1,0 +1,11 @@
+<%= search_form_for q, url: search_rooms_path, method: :post, class: "navbar-form navbar-left", role: "search" do |f|%>
+  <div class="form-group">
+    <div class="input-group stylish-input-group">
+        <%= f.text_field :title_cont, class: "form-control", placeholder: "Find your room!" %>
+        <span class="input-group-addon">
+        <%= f.button do %>
+          <%= content_tag(:span, "", class: "glyphicon glyphicon-search") %>
+        <% end %>
+    </div>
+  </div>
+<% end %>

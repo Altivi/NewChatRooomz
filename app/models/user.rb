@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
 
   has_many :rooms, foreign_key: :creator_id
   has_many :messages, foreign_key: :author_id
-  has_many :deleted_messages
+  has_many :deleted_messages 
+  attr_accessor :delete_avatar
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
@@ -15,9 +16,10 @@ class User < ActiveRecord::Base
 				    dropbox_options: {  path: proc { |style| "avatars/#{id}/#{avatar.original_filename}" } }
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  validates :nickname, presence: true, length: { in: 2..30 } , if: :active_or_choose_nickname?
+  validates :nickname, presence: true, length: { in: 2..15 } , if: :active_or_choose_nickname?
 
   after_save :save_slow_url
+  before_validation { fast_avatar_url.clear if delete_avatar == '1' }
 
   def active?
     signup_status == 'active'
@@ -28,7 +30,9 @@ class User < ActiveRecord::Base
   end
 
   def save_slow_url
-    update_column(:fast_avatar_url, avatar.url(:thumb)) if  (self.avatar_file_name_changed? )
+    if avatar.url(:thumb) != fast_avatar_url && delete_avatar != '1'
+      self.update_column(:fast_avatar_url, avatar.url(:thumb)) 
+    end
   end
 
 end

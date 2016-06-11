@@ -20,7 +20,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   private 
     def profile_settings_params
-      params.require(:user).permit(:nickname, :avatar)
+      params.require(:user).permit(:nickname, :avatar, :delete_avatar)
     end
   # GET /resource/sign_up
   # def new

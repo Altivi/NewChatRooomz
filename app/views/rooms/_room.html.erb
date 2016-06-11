@@ -3,13 +3,17 @@
 		<div class="col-md-4">
 			<%= link_to "", room_path(room), class: "room_icon glyphicon glyphicon-home" %>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-6">
 			<h4>Room: <%= room.title %></h4>
 			<% if room.creator == current_user %>
 				<h5>Creator: You</h5>
-				<%= link_to "x", room_path(room), method: :delete, remote: true, confirm: "Are u sure?" %>
 			<% else %>
-				<%= room.creator.nickname %>
+				<h5>Creator: <%= room.creator.nickname %></h5>
+			<% end %>
+		</div>
+		<div class="col-md-2">
+			<% if room_creator?(room) %>
+				<%= link_to "×", room_path(room), class: "delete-room-link", method: :delete, remote: true %>
 			<% end %>
 		</div>
 	<% end %>

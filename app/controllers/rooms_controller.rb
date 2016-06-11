@@ -3,7 +3,9 @@ class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :destroy]
 
   def index
-    @rooms = Room.all.includes(:creator).page(params[:page]).per_page(10)
+    @q = Room.search(params[:q])
+    @rooms = @q.result.includes(:creator).page(params[:page]).per_page(10)
+
     @room = Room.new
   end
 

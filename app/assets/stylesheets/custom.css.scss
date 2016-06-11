@@ -144,6 +144,21 @@ $colHover       : #ffe6d1; /*/
     margin-top: 10px;
 }
 
+.delete-room-link, .glyphicon-remove-sign {
+    font-size: 15px;
+    color: #D96459;
+    &:hover {
+        color: red;
+        text-decoration: none;
+    }
+    &:link {
+        text-decoration: none;
+    }
+
+}
+
+/*********************************/
+
 .loading-gif {
     align: middle;
 }

@@ -12,9 +12,15 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :avatar %>
+            <%= f.label :avatar, "Check new avatar" %>
             <%= f.file_field :avatar, class: "filestyle", data: { buttonBefore: true, buttonText: "Choose avatar"} %>
           </div>
+
+          <div class="form-group">
+            <%= f.label :delete_avatar, "Or delete avatar" %>
+            <%= f.check_box :delete_avatar %>
+          </div>
+
 
           <div class="actions">
             <%= f.submit "Update", class: "btn btn-default btn-lg btn-block" %>
