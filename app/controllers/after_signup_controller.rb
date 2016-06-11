@@ -1,5 +1,4 @@
 class AfterSignupController < ApplicationController
-	
 	before_action :set_user, only: [:show, :update]
 	include Wicked::Wizard
 

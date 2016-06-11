@@ -1,4 +1,4 @@
-<% unless message.nil? || message.new_record? %>
+<% unless message.new_record? %>
 	<%= content_tag :li, id: "message_#{message.id}", class: "message #{self_or_other(message)}", data: { id: message.id } do %>
 		<%= avatar_or_nickname(message) %>
  	  	<div class="chatboxmessagecontent">

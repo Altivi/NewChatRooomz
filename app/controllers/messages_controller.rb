@@ -1,10 +1,9 @@
 class MessagesController < ApplicationController
 
-  before_action :set_message_room
+  before_action :set_room
   
   def create
     @message = @room.messages.build(message_params)
-    @message.author = current_user
     @message.save!
   end
 
@@ -19,12 +18,12 @@ class MessagesController < ApplicationController
 
   private
 
-  def set_message_room
+  def set_room
     @room = Room.find(params[:room_id])
   end
 
   def message_params
-	    params.require(:message).permit(:content)
+	    params.require(:message).permit(:content).merge(author: current_user)
 	end
 
 end

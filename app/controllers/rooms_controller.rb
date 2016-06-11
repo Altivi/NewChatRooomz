@@ -1,28 +1,25 @@
 class RoomsController < ApplicationController
   
   before_action :set_room, only: [:show, :destroy]
+  before_action :set_search, only: [:index]
 
   def index
-    @q = Room.search(params[:q])
     @rooms = @q.result.includes(:creator).page(params[:page]).per_page(10)
-
     @room = Room.new
   end
 
   def show
     @new_message = @room.messages.build
+    @messages = @room.messages.remaining_messages(current_user)
     if params[:chat_msg_id]
-      @messages = @room.messages.remaining_messages(current_user).get_more_messages(10,params[:chat_msg_id])
+      @messages = @messages.get_more_messages(10,params[:chat_msg_id])
     else
-      @messages = @room.messages.remaining_messages(current_user).last_messages(10)
+      @messages = @messages.last_messages(10)
     end
     respond_to do |format|
       format.html
       format.js
     end
-  end
-
-  def new
   end
 
   def create
@@ -39,11 +36,11 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    @room.destroy if @room.creator == current_user
+    @room.destroy if @room.creator?(current_user)
     respond_to do |format|
       format.html { 
         flash[:success] = "Room successfully deleted"
-        redirect_to user_path(@room.creator)
+        redirect_to @room
       }
       format.js
     end
@@ -53,6 +50,10 @@ class RoomsController < ApplicationController
 
     def set_room
       @room = Room.find(params[:id])
+    end
+
+    def set_search
+      @q = Room.search(params[:q])
     end
 
     def room_params

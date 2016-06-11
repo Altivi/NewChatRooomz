@@ -1,4 +1,5 @@
 class Room < ActiveRecord::Base
+	
 	has_many :messages
 	belongs_to :creator, class_name: "User"
 	
@@ -6,4 +7,8 @@ class Room < ActiveRecord::Base
 
 	validates_presence_of :creator_id
 	validates :title, length: { maximum: 25 }, presence: true
+
+	def creator?(user)
+		creator == user
+	end
 end
