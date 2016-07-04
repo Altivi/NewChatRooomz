@@ -11,7 +11,7 @@ module MessagesHelper
 	def avatar_or_nickname(message)
 		if avatar_present?(message)
 			content_tag :div, class: "avatar" do
-				image_tag message.author.fast_avatar_url
+				image_tag message.author.avatar.url(:thumb)
 			end
 		else
 			content_tag :div, message.author.nickname, class: "without_avatar"

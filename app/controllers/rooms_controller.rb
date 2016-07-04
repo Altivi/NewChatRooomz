@@ -1,11 +1,20 @@
 class RoomsController < ApplicationController
-  
+
   before_action :set_room, only: [:show, :destroy]
   before_action :set_search, only: [:index]
+  #after_action :take_snapshot, only: [:create]
 
   def index
     @rooms = @q.result.includes(:creator).page(params[:page]).per_page(10)
     @room = Room.new
+    @kit = IMGKit.new(render_to_string 'rooms/index')
+
+    respond_to do |format|
+      format.html
+      format.jpg do
+        send_data(@kit.to_jpg, :type => "image/jpeg", :disposition => 'inline')
+      end
+    end
   end
 
   def show
