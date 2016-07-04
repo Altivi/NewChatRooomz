@@ -7,8 +7,9 @@ class RoomsController < ApplicationController
   def index
     @rooms = @q.result.includes(:creator).page(params[:page]).per_page(10)
     @room = Room.new
-    @kit = IMGKit.new(render_to_string 'rooms/index')
-
+    @kit = IMGKit.new(render_to_string(:template => 'rooms/index.html.erb', :layout => false))
+    @kit.stylesheets << self.class.helpers.asset_path('application.scss') #Rails.root.join('app', 'assets', 'stylesheets', 'custom.css.scss')
+    @kit.javascripts << Rails.root.join('app', 'assets', 'javascripts', 'application.js')
     respond_to do |format|
       format.html
       format.jpg do
