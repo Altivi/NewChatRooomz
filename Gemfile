@@ -13,6 +13,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'private_pub'
 gem 'thin'
+gem 'unicorn'
+gem 'unicorn-rails'
 gem 'devise', '~> 4.1', '>= 4.1.1'
 gem 'figaro'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
@@ -33,6 +35,11 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
 end
 
 group :production do
