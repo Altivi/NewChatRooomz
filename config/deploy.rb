@@ -3,9 +3,9 @@ lock '3.5.0'
 
 set :application, 'chatrooomz'
 set :repo_url, 'git@54.235.152.220:web/trainee-alex-tishchenko-chat.git'
-set :deploy_to, '/home/deploy/chatrooomz'
+set :deploy_to, '/home/deploy/apps/chatrooomz'
 set :user, 'deploy'
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
+#set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 set :branch, :development
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
