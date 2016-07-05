@@ -85,5 +85,5 @@ test:
 production:
   <<: *default
   database: chatrooomz_production
-  username: deploy
+  username: deployer
   password: 123123
