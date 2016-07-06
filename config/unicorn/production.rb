@@ -7,8 +7,8 @@ user "deploy", "deploy"
 
 working_directory root
 
-stderr_path "#{app_root}/shared/log/unicorn.stderr.log"
-stdout_path "#{app_root}/shared/log/unicorn.stdout.log"
+stderr_path "#{root}/log/unicorn.log"
+stdout_path "#{root}/log/unicorn.log"
 
 pid "#{app_root}/shared/tmp/pids/unicorn.pid"
 
