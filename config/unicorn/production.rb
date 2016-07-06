@@ -3,8 +3,6 @@ root = "#{app_root}/current"
 unicorn_pid = "#{app_root}/shared/tmp/pids/unicorn.pid"
 old_pid = "#{unicorn_pid}.oldbin"
 
-user "deploy", "deploy"
-
 working_directory root
 
 stderr_path "#{root}/log/unicorn.log"
