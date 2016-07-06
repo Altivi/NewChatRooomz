@@ -4,7 +4,7 @@ env = ENV["RAILS_ENV"] || "development"
 
 # Production specific settings
 if env == "production"
-  app_dir = "app-name"
+  app_dir = "chatrooomz"
   worker_processes 4
 end
 

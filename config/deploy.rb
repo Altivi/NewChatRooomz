@@ -3,7 +3,7 @@ lock '3.5.0'
 
 set :application, 'chatrooomz'
 set :repo_url, 'git@54.235.152.220:web/trainee-alex-tishchenko-chat.git'
-set :deploy_to, '/home/deploy/apps/chatrooomz'
+set :deploy_to, '~/apps/chatrooomz'
 set :user, 'deploy'
 #set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 set :branch, :development
@@ -28,7 +28,7 @@ set :format, :airbrussh
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
-
+set :linked_files, %w{config/database.yml config/application.yml}
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
 
