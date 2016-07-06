@@ -42,6 +42,9 @@ after_fork do |server, worker|
   end
 end
 
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{root}/Gemfile"
+end
 
 # # Set environment to development unless something else is specified
 # env = ENV["RAILS_ENV"] || "development"
