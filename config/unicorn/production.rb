@@ -10,11 +10,11 @@ stdout_path "#{root}/log/unicorn.log"
 
 pid "#{app_root}/shared/tmp/pids/unicorn.pid"
 
-worker_processes 1
+worker_processes 2
 timeout 30
 preload_app true
 
-listen "#{app_root}/shared/tmp/unicorn.sock", :backlog => 64
+listen "#{app_root}/shared/tmp/unicorn.sock", backlog: 64
 
 # before_fork do |server, worker|
 #   # the following is highly recomended for Rails + "preload_app true"
