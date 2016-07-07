@@ -14,7 +14,8 @@ worker_processes 2
 timeout 30
 preload_app true
 
-listen "#{app_root}/shared/tmp/unicorn.sock", backlog: 64
+
+listen "#{app_root}/shared/tmp/sockets/unicorn.sock", backlog: 64
 
 # before_fork do |server, worker|
 #   # the following is highly recomended for Rails + "preload_app true"
