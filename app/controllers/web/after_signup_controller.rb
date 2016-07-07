@@ -1,4 +1,5 @@
-class AfterSignupController < ApplicationController
+class Web::AfterSignupController < Web::BaseController
+	
 	before_action :set_user, only: [:show, :update]
 	include Wicked::Wizard
 

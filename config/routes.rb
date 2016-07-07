@@ -1,34 +1,47 @@
 Rails.application.routes.draw do
 
-  get 'home/index'
 
-  devise_for :users, path: "auth", controllers: { registrations: 'auth/registrations', sessions: 'auth/sessions' }
-  devise_scope :user do
-    get "/login" => "auth/sessions#new"
-    post "/login" => "auth/sessions#create"
-    get "/signup" => "auth/registrations#new"
-    post "/signup" => "auth/registrations#create"
-    delete "/logout" => "auth/sessions#destroy"
+  scope module: 'web' do
+    
+    get 'home/index'
 
-    get "/auth/settings/account" => "auth/registrations#edit"
-    put "/auth/settings/account" => "auth/registrations#update"
-    get "/auth/settings/profile" => "auth/registrations#profile_settings"
-    put "/auth/settings/profile" => "auth/registrations#profile_settings_update"
+    devise_for :users, path: "auth", controllers: { registrations: 'web/auth/registrations', sessions: 'web/auth/sessions' }
+    devise_scope :user do
+      get "/login" => "auth/sessions#new"
+      post "/login" => "auth/sessions#create"
+      get "/signup" => "auth/registrations#new"
+      post "/signup" => "auth/registrations#create"
+      delete "/logout" => "auth/sessions#destroy"
+
+      get "/auth/settings/account" => "auth/registrations#edit"
+      put "/auth/settings/account" => "auth/registrations#update"
+      get "/auth/settings/profile" => "auth/registrations#profile_settings"
+      put "/auth/settings/profile" => "auth/registrations#profile_settings_update"
+    end
+
+    authenticated :user do
+       root 'rooms#index'
+    end
+
+    unauthenticated :user do
+      get "/" => "home#index"
+    end
+
+    resources :after_signup
+
+    resources :rooms do
+      resources :messages
+      collection { post :search, to: 'rooms#index' }
+    end
   end
 
-  authenticated :user do
-     root 'rooms#index'
-  end
-
-  unauthenticated :user do
-    get "/" => "home#index"
-  end
-
-  resources :after_signup
-
-  resources :rooms do
-    resources :messages
-    collection { post :search, to: 'rooms#index' }
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :rooms do
+        resources :messages
+        collection { post :search, to: 'rooms#index' }
+      end
+    end
   end
  
   # The priority is based upon order of creation: first created -> highest priority.

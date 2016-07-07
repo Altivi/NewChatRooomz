@@ -1,4 +1,4 @@
-class Auth::SessionsController < Devise::SessionsController
+class Web::Auth::SessionsController < Devise::SessionsController
 # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
