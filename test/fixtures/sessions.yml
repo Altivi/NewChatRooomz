@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  access_token: MyString
+  devise_token: MyString
+  push_token: MyString
+  expiration_date: 2016-07-08 14:25:16
+  type: 
+
+two:
+  user_id: 
+  access_token: MyString
+  devise_token: MyString
+  push_token: MyString
+  expiration_date: 2016-07-08 14:25:16
+  type: 

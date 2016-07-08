@@ -29,16 +29,16 @@ Rails.application.routes.draw do
 
     resources :after_signup
 
-    resources :rooms do
-      resources :messages
+    resources :rooms, only: [:index, :show, :create, :destroy] do
+      resources :messages, only: [:create, :destroy]
       collection { post :search, to: 'rooms#index' }
     end
   end
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :rooms do
-        resources :messages
+      resources :rooms, only: [:index, :show, :create, :destroy] do
+        resources :messages, only: [:create, :destroy]
         collection { post :search, to: 'rooms#index' }
       end
     end

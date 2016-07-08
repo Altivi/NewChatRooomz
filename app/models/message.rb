@@ -5,7 +5,7 @@ class Message < ActiveRecord::Base
 
   scope :last_messages,  lambda { |num = nil| includes(:author).order("id DESC").limit(num).reverse }
   scope :get_more_messages,  lambda { |num, first_msg_id| where('id < ?', first_msg_id).includes(:author).last_messages(num)}
-  scope :remaining_messages, lambda { |user| where.not(id: DeletedMessage.deleted_messages_ids(user)) }
+  scope :remaining_messages, lambda { |user = nil| where.not(id: DeletedMessage.deleted_messages_ids(user)) }
 
   validates_presence_of :room_id, :author_id
   validates :content, length: { maximum: 1000 }, presence: true

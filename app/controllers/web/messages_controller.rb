@@ -23,7 +23,7 @@ class Web::MessagesController < Web::BaseController
 	end
 
 	def message_params
-			params.require(:message).permit(:content).merge(author: current_user)
+		params.require(:message).permit(:content).merge(author: current_user)
 	end
 
 end

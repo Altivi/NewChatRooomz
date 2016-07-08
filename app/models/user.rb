@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
 	has_many :rooms, foreign_key: :creator_id
 	has_many :messages, foreign_key: :author_id
-	has_many :deleted_messages 
+	has_many :deleted_messages
+	has_many :sessions
 	attr_accessor :delete_avatar
 
 	devise :database_authenticatable, :registerable,

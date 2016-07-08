@@ -5,39 +5,46 @@ class Api::V1::RoomsController < Api::V1::BaseController
 
 	def index
 		@rooms = @q.result.includes(:creator).page(params[:page]).per_page(10)
-		@room = Room.new
 	end
 
+	#### AUTH
 	def show
-    	@new_message = @room.messages.build
-    	@messages = @room.messages.remaining_messages(current_user)
-    	if params[:chat_msg_id]
- 			@messages = @messages.get_more_messages(10,params[:chat_msg_id])
+		@messages = @room.messages.remaining_messages()
+	end
+
+	#### AUTH
+	def create
+		@room = Room.new(room_params)
+		if @room.save
+			render :show, status: :created
 		else
-			@messages = @messages.last_messages(10)
+			render json: @room.errors, status: :unprocessable_entity
 		end
 	end
 
-	def create
-		@room = current_user.rooms.new(room_params)
-	end
-
-	def destroy
-		@room.destroy if @room.creator?(current_user)
+	#### AUTH
+	def destroy 
+		if @room.destroy
+			render text: "Destroyed", status: :ok
+		else
+			render text: "Not Destroyed", status: :unprocessable_entity
+		end
 	end
 
 	private 
 
 		def set_search
-	      @q = Room.search(params[:q])
-	    end
+			@q = Room.search(params[:q])
+		end
 
-	   def set_room
-	      @room = Room.find(params[:id])
-	   end
+		def set_room
+			unless @room = Room.find_by_id(params[:id])
+				render text: "Room not found", status: :not_found
+			end
+		end
 
-	   def room_params
-			params.require(:room).permit(:title, :creator)
+		def room_params
+			params.require(:room).permit(:title, :creator_id)
 		end
 
 end
