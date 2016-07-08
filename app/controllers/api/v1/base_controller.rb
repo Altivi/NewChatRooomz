@@ -12,7 +12,7 @@ class Api::V1::BaseController < ApplicationController
 		end
 
 		def authenticate_user_from_token!
-			if !request.headers["HTTP_ACCESS_TOKEN"]
+			unless request.headers["HTTP_ACCESS_TOKEN"]
 				render text: "Unauthorized", status: :unauthorized
 			else
 				Session.find_each do |s|
@@ -20,7 +20,11 @@ class Api::V1::BaseController < ApplicationController
 						current_user = s.user
 					end
 				end
+				if !signed_in?
+					render text: "Unauthorized", status: :unauthorized
+				end
 			end
+
 		end
 
 end

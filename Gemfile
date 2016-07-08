@@ -27,6 +27,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'ransack'
 gem 'whenever'
 gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
+gem 'hirb'
 
 group :development, :test do
   gem 'byebug'
