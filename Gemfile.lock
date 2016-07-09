@@ -226,6 +226,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_enum (2.3.0)
+      activesupport (>= 4.0.0)
     spring (1.7.2)
     sprockets (3.6.3)
       concurrent-ruby (~> 1.0)
@@ -304,6 +306,7 @@ DEPENDENCIES
   ransack
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simple_enum (~> 2.3)
   spring
   thin
   turbolinks

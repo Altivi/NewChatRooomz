@@ -1,20 +1,20 @@
 class Api::V1::RegistrationsController < Api::V1::BaseController
 
+	skip_before_action :authenticate_user!, only: [:create]	
+
 	def create
-		user = User.new(params[:user])
+		user = User.new(user_params)
 		if user.save
-			render :json=> {:user => [:email => user.email, :auth_token => user.authentication_token]}, :status => 201
-			return
+			render text: "Sign up completed!", status: :created
 		else
-			warden.custom_failure!
-			render :json=> user.errors, :status=>422
+			render json: user.errors, status: :unprocessable_entity
 		end
 	end
 
 	private
 
 		def user_params
-			params.require(:user).permit(:email, )
+			params.require(:user).permit(:email, :password)
 		end
 
 end

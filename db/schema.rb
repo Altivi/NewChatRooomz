@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708112516) do
+ActiveRecord::Schema.define(version: 20160709215056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,14 +50,15 @@ ActiveRecord::Schema.define(version: 20160708112516) do
   create_table "sessions", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "access_token"
-    t.string   "devise_token"
+    t.string   "device_token"
     t.string   "push_token"
-    t.datetime "expiration_date"
-    t.string   "type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "device_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
+  add_index "sessions", ["access_token"], name: "index_sessions_on_access_token", using: :btree
+  add_index "sessions", ["device_token"], name: "index_sessions_on_device_token", using: :btree
   add_index "sessions", ["user_id"], name: "index_sessions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|

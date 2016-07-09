@@ -28,6 +28,7 @@ gem 'ransack'
 gem 'whenever'
 gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
 gem 'hirb'
+gem 'simple_enum', '~> 2.3'
 
 group :development, :test do
   gem 'byebug'
