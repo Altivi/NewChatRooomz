@@ -5,6 +5,6 @@ test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
 production:
-  server: "http://52.39.91.201:9292/faye"
+  server: "http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/faye"
   secret_token: "bdddb290b130fab3e02654f64f8571c3ee56d621980abbaf6997c567a1255fbe"
   signature_expiration: 36000
