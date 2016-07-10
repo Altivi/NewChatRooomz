@@ -26,11 +26,12 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 set :foreman_use_sudo, false # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
 set :foreman_roles, :all
 set :foreman_template, 'upstart'
-# set :foreman_export_path, ->{ File.join(Dir.home, '.init') }
-# set :foreman_options, ->{ {
-#   app: chatrooomz,
-#   log: File.join("#{app_root}/shared/", 'log')
-# } }
+set :foreman_export_path, ->{ File.join(Dir.home, '.init') }
+set :foreman_options, ->{ {
+  app: chatrooomz,
+  user: deploy,
+  log: File.join(shared_path, 'log')
+} }
 
 
 # Default value for default_env is {}
