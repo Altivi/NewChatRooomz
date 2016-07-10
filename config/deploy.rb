@@ -92,10 +92,9 @@ namespace :private_pub do
   desc "Start private_pub server"
   task :start do
     on roles(:app) do
-      within current_path do
-        10.times { puts current_path }
-        with RAILS_ENV: "production" do
-          execute :bundle, "exec rackup private_pub.ru -s thin -E production -d -P #{fetch(:private_pub_pid)}"
+      within release_path do
+        with rails_env: "production" do
+          execute :bundle, "exec thin -C config/private_pub.yml -d -P #{fetch(:private_pub_pid)} start"
         end
       end
     end
