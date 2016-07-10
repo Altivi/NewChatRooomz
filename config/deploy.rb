@@ -71,7 +71,7 @@ namespace :private_pub do
   #        execute :bundle, "exec thin -C config/private_pub.yml -d -P #{fetch(:private_pub_pid)} start"
    #   end
    # end
-   run "cd /home/deploy/apps/chatrooomz/current;rackup private_pub.ru -s thin -E production -D"
+   invoke "cd /home/deploy/apps/chatrooomz/current;rackup private_pub.ru -s thin -E production -D"
   end
 
   desc "Stop private_pub server"
