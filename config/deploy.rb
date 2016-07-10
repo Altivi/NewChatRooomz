@@ -28,8 +28,7 @@ set :foreman_roles, :all
 set :foreman_template, 'upstart'
 set :foreman_export_path, ->{ File.join(Dir.home, '.init') }
 set :foreman_options, ->{ {
-  app: chatrooomz,
-  user: deploy,
+  user: 'deploy',
   log: File.join(shared_path, 'log')
 } }
 
