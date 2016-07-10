@@ -104,7 +104,7 @@ namespace :private_pub do
   task :stop do
     on roles(:app) do
       within current_path do
-        execute "if [ -f tmp/pids/private_pub.pid ] && [ -e /proc/$(cat tmp/pids/private_pub.pid) ]; then kill -9 #{fetch(:private_pub_pid)}; fi"
+        execute "if [ -f #{fetch(:private_pub_pid)} ] && [ -e /proc/$(cat #{fetch(:private_pub_pid)}) ]; then kill -9 `cat #{fetch(:private_pub_pid)}`; fi"      end
       end
     end
   end
