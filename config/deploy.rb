@@ -93,7 +93,7 @@ namespace :private_pub do
   task :start do
     on roles(:app) do
       within current_path do
-        with RAILS_ENV: fetch(:production) do
+        with RAILS_ENV: fetch(:environment) do
           execute :bundle, "exec rackup private_pub.ru -s thin -E production -D -P #{fetch(:private_pub_pid)}"
         end
       end
