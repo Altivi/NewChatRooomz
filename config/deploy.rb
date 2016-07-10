@@ -101,8 +101,8 @@ namespace :private_pub do
 
   desc "Restart private_pub server"
   task :restart do
-    stop
-    start
+    invoke 'private_pub:stop'
+    invoke 'private_pub:start'
   end
 end
 
