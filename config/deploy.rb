@@ -68,7 +68,7 @@ namespace :private_pub do
   task :start do
     on roles(:app) do
       within release_path do
-          execute :bundle, "exec thin -C config/private_pub.yml -d -P #{fetch(:private_pub_pid)} -E production start"
+          execute :bundle, "exec thin -C config/private_pub.yml -d -P #{fetch(:private_pub_pid)} start"
       end
     end
   end
