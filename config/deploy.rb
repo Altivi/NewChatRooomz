@@ -104,7 +104,7 @@ namespace :private_pub do
   task :stop do
     on roles(:app) do
       within current_path do
-        execute "if [ -f #{fetch(:private_pub_pid)} ] && [ -e /proc/$(cat #{fetch(:private_pub_pid)}) ]; then kill -9 `cat #{fetch(:private_pub_pid)}`; fi"      end
+        execute "if [ -f #{fetch(:private_pub_pid)} ] && [ -e /proc/$(cat #{fetch(:private_pub_pid)}) ]; then kill -9 `cat #{fetch(:private_pub_pid)}`; fi"
       end
     end
   end
@@ -116,7 +116,6 @@ namespace :private_pub do
       invoke 'private_pub:start'
     end
   end
-
-  after 'deploy:restart', 'private_pub:restart'
-
 end
+
+after 'deploy:restart', 'private_pub:restart'
