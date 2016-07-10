@@ -21,6 +21,7 @@ set :format, :airbrussh
 set :linked_files, %w{config/database.yml config/application.yml}
 # Default value for linked_dirs is []
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :private_pub_pid, -> { "#{app_root}/shared/tmp/pids/private_pub.pid" }
 
 # Default settings
 # set :foreman_use_sudo, false # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
@@ -60,5 +61,36 @@ namespace :deploy do
       # end
     end
   end
+
+
+namespace :private_pub do
+  desc "Start private_pub server"
+  task :start do
+    on roles(:app) do
+      within release_path do
+          execute :bundle, "exec thin -C config/private_pub.yml -d -P #{fetch(:private_pub_pid)} start"
+      end
+    end
+  end
+
+  desc "Stop private_pub server"
+  task :stop do
+    on roles(:app) do
+      within release_path do
+        execute "if [ -f #{fetch(:private_pub_pid)} ] && [ -e /proc/$(cat #{fetch(:private_pub_pid)}) ]; then kill -9 `cat #{fetch(:private_pub_pid)}`; fi"
+      end
+    end
+  end
+
+  desc "Restart private_pub server"
+  task :restart do
+    on roles(:app) do
+      invoke 'private_pub:stop'
+      invoke 'private_pub:start'
+    end
+  end
+end
+
+after 'deploy:restart', 'private_pub:restart'
 
 end
