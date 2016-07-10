@@ -92,7 +92,7 @@ namespace :private_pub do
   desc "Start private_pub server"
   task :start do
     on roles(:app) do
-      within "/home/deploy/apps/chatrooomz/current" do
+      within current_path do
         with RAILS_ENV: "production" do
           execute :bundle, "exec rackup private_pub.ru -s thin -E production -D -P #{fetch(:private_pub_pid)}"
         end
@@ -103,7 +103,9 @@ namespace :private_pub do
   desc "Stop private_pub server"
   task :stop do
     on roles(:app) do
-      execute "cd #{current_path};if [ -f tmp/pids/private_pub.pid ] && [ -e /proc/$(cat tmp/pids/private_pub.pid) ]; then kill -9 `cat tmp/pids/private_pub.pid`; fi"
+      within current_path do
+        execute "if [ -f tmp/pids/private_pub.pid ] && [ -e /proc/$(cat tmp/pids/private_pub.pid) ]; then kill -9 `cat tmp/pids/private_pub.pid`; fi"
+      end
     end
   end
 
