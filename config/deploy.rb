@@ -23,7 +23,7 @@ set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Default settings
-set :foreman_use_sudo, :rvm # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
+set :foreman_use_sudo, true # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
 set :foreman_roles, :all
 set :foreman_template, 'upstart'
 set :foreman_options, ->{ {
