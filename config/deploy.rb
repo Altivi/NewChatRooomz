@@ -94,7 +94,7 @@ namespace :private_pub do
     on roles(:app) do
       within release_path do
         with rails_env: "production" do
-          execute :bundle, "exec rackup private_pub.ru -s thin -C config/private_pub.yml -d -P #{fetch(:private_pub_pid)} -a 127.0.0.1 -p 9292 start"
+          execute :bundle, "exec thin -C config/private_pub.yml -E production -d -P #{fetch(:private_pub_pid)} -a 127.0.0.1 -p 9292 start"
         end
       end
     end
