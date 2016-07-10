@@ -66,11 +66,12 @@ end
 namespace :private_pub do
   desc "Start private_pub server"
   task :start do
-    on roles(:app) do
-      within release_path do
-          execute :bundle, "exec thin -C config/private_pub.yml -d -P #{fetch(:private_pub_pid)} start"
-      end
-    end
+ #   on roles(:app) do
+  #    within release_path do
+  #        execute :bundle, "exec thin -C config/private_pub.yml -d -P #{fetch(:private_pub_pid)} start"
+   #   end
+   # end
+   run "cd /home/deploy/apps/chatrooomz/current;rackup private_pub.ru -s thin -E production -D"
   end
 
   desc "Stop private_pub server"
