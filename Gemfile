@@ -28,7 +28,7 @@ gem 'ransack'
 gem 'whenever'
 gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
 gem 'hirb'
-gem 'simple_enum', '~> 2.3'
+gem 'foreman', '~> 0.82.0'
 
 group :development, :test do
   gem 'byebug'
@@ -42,6 +42,7 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'capistrano-foreman', '~> 1.2'
 end
 
 group :production do

@@ -7,14 +7,12 @@ class Api::V1::RoomsController < Api::V1::BaseController
 		@rooms = @q.result.includes(:creator).page(params[:page]).per_page(10)
 	end
 
-	#### AUTH
 	def show
-		@messages = @room.messages.remaining_messages()
+		@messages = @room.messages.remaining_messages(current_user)
 	end
 
-	#### AUTH
 	def create
-		@room = Room.new(room_params)
+		@room = current_user.rooms.new(room_params)
 		if @room.save
 			render :show, status: :created
 		else
@@ -22,12 +20,15 @@ class Api::V1::RoomsController < Api::V1::BaseController
 		end
 	end
 
-	#### AUTH
-	def destroy 
-		if @room.destroy
-			render text: "Destroyed", status: :ok
+	def destroy
+		if @room.creator?(current_user)
+			if @room.destroy
+				render text: "Destroyed", status: :ok
+			else
+				render text: "Not Destroyed", status: :unprocessable_entity
+			end
 		else
-			render text: "Not Destroyed", status: :unprocessable_entity
+			render text: "You can't delete this room", status: :forbidden
 		end
 	end
 
@@ -44,7 +45,7 @@ class Api::V1::RoomsController < Api::V1::BaseController
 		end
 
 		def room_params
-			params.require(:room).permit(:title, :creator_id)
+			params.require(:room).permit(:title)
 		end
 
 end

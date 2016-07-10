@@ -5,11 +5,15 @@ class Api::V1::SessionsController < Api::V1::BaseController
 	def create
 		user = User.find_by(email: user_session_params[:email].downcase)
 		if user && user.valid_password?(user_session_params[:password])
-			new_session = user.sessions.build(user_session_params[:session_attributes])
-			if new_session.save
-				render json: new_session.access_token, status: :created
+			if user.confirmed?
+				new_session = user.sessions.build(user_session_params[:session_attributes])
+				if new_session.save
+					render json: new_session.access_token, status: :created
+				else
+					render json: new_session.errors, status: :unprocessable_entity
+				end
 			else
-				render json: new_session.errors, status: :unprocessable_entity
+				render text: "You have to confirm your email address", status: :unauthorized
 			end
 		else
 			render text: "Invalid email/password combination", status: :unauthorized

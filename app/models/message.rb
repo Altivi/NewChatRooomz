@@ -11,7 +11,9 @@ class Message < ActiveRecord::Base
   validates :content, length: { maximum: 1000 }, presence: true
   
   def delete_for(user)
-  	 DeletedMessage.create!({ user: user, message_id: self.id })
+    unless DeletedMessage.find_by(user: user, message_id: self.id)
+      DeletedMessage.create!({ user: user, message_id: self.id })
+    end
   end
 
 end

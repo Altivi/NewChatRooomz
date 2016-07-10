@@ -22,6 +22,17 @@ set :linked_files, %w{config/database.yml config/application.yml}
 # Default value for linked_dirs is []
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
+# Default settings
+set :foreman_use_sudo, false # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
+set :foreman_roles, :all
+set :foreman_template, 'upstart'
+set :foreman_export_path, ->{ File.join(Dir.home, '.init') }
+set :foreman_options, ->{ {
+  app: chatrooomz,
+  log: File.join("#{app_root}/shared/", 'log')
+} }
+
+
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
@@ -35,6 +46,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'unicorn:stop'
       invoke 'unicorn:start'
+      invoke 'foreman:restart'
     end
   end
 

@@ -23,6 +23,7 @@ class Web::RoomsController < Web::BaseController
 	def show
 		@new_message = @room.messages.build
 		@messages = @room.messages.remaining_messages(current_user)
+		@first_message = @messages.first.id
 		if params[:chat_msg_id]
 			@messages = @messages.get_more_messages(10,params[:chat_msg_id])
 		else

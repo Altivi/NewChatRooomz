@@ -12,12 +12,11 @@ class Api::V1::MessagesController < Api::V1::BaseController
 		end
 	end
 
-	#### AUTH
 	def destroy
-		if @message.delete		#@message.delete_for(current_user)
+		if @message.delete_for(current_user)
 			render text: "Destroyed", status: :ok
 		else
-			render text: "Not Destroyed", status: :unprocessable_entity
+			render text: "Not destroyed", status: :unprocessable_entity
 		end
 	end
 
@@ -36,7 +35,7 @@ class Api::V1::MessagesController < Api::V1::BaseController
 		end
 
 		def message_params
-			params.require(:message).permit(:content, :author_id, :room_id)
+			params.require(:message).permit(:content).merge(author: current_user)
 		end
 
 end

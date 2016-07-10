@@ -1,24 +1,24 @@
 Rails.application.routes.draw do
 
-  devise_for :users, path: "auth", controllers: { registrations: 'web/auth/registrations', sessions: 'web/auth/sessions' }
-  devise_scope :user do
-    get "/login" => "auth/sessions#new"
-    post "/login" => "auth/sessions#create"
-    get "/signup" => "auth/registrations#new"
-    post "/signup" => "auth/registrations#create"
-    delete "/logout" => "auth/sessions#destroy"
 
-    get "/auth/settings/account" => "auth/registrations#edit"
-    put "/auth/settings/account" => "auth/registrations#update"
-    get "/auth/settings/profile" => "auth/registrations#profile_settings"
-    put "/auth/settings/profile" => "auth/registrations#profile_settings_update"
-  end
 
   scope module: 'web' do
     
     get 'home/index'
 
-    
+    devise_for :users, path: "auth", controllers: { registrations: 'web/auth/registrations', sessions: 'web/auth/sessions', confirmations: 'web/auth/confirmations', passwords: 'web/auth/passwords' }
+    devise_scope :user do
+      get "/login" => "auth/sessions#new"
+      post "/login" => "auth/sessions#create"
+      get "/signup" => "auth/registrations#new"
+      post "/signup" => "auth/registrations#create"
+      delete "/logout" => "auth/sessions#destroy"
+
+      get "/auth/settings/account" => "auth/registrations#edit"
+      put "/auth/settings/account" => "auth/registrations#update"
+      get "/auth/settings/profile" => "auth/registrations#profile_settings"
+      put "/auth/settings/profile" => "auth/registrations#profile_settings_update"
+    end
 
     authenticated :user do
        root 'rooms#index'

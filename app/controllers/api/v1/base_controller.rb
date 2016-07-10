@@ -4,7 +4,7 @@ class Api::V1::BaseController < ApplicationController
 	protect_from_forgery with: :null_session, only: Proc.new { |c| c.request.format.json? }
 	before_action :destroy_session, :authenticate_user!
 	
-	include ApiSessionsHelper
+	include Sessionable
 
 	private
 

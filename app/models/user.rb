@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	attr_accessor :delete_avatar
 
 	devise :database_authenticatable, :registerable,
-				 :recoverable, :rememberable, :trackable, :validatable, :confirmable
+				 :recoverable, :rememberable, :trackable, :validatable , :confirmable
 
 	has_attached_file :avatar, styles: { thumb: "100x100#" }, default_url: "http://lunar.gsfc.nasa.gov/webdesign/nasa-logo.png"
 						# storage: :dropbox,

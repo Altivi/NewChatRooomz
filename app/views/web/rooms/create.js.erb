@@ -4,5 +4,5 @@ $('#error_explanation').remove();
 	$('#new_room').trigger("reset");
 	$('#all_rooms').prepend('<%= escape_javascript(render @room) %>');
 <% else %>
-	$('#newRoomModal .modal-dialog .modal-content .modal-body').prepend("<%= escape_javascript(render 'shared/error_messages', object: @room) %>");
+	$('#newRoomModal .modal-dialog .modal-content .modal-body').prepend("<%= escape_javascript(render 'web/shared/error_messages', object: @room) %>");
 <% end %>

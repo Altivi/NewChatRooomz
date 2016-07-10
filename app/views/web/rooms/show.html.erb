@@ -1,3 +1,5 @@
+<%= subscribe_to room_path(@room) %>
+
 <div class="conversation col-md-offset-1">
 	<div class="chatboxhead">
 		<div class="chatboxtitle">
@@ -7,10 +9,8 @@
 	</div>
 	<div class="chatboxcontent">
 		<% if @messages.any? %>
-			<% if @room.messages.remaining_messages(current_user).count > 10 %>
-				<%= image_tag "spin.gif", style: "display:none;", class: "center-block loading-gif" %>
-				<%= link_to "Load More", room_path(@room), class: "btn btn-danger center-block load-more" %>
-			<% end %>
+			<%= image_tag "spin.gif", style: "display:none;", class: "center-block loading-gif" %>
+			<%= link_to "Load More", room_path(@room), class: "btn btn-danger center-block load-more" %>
 			<%= render @messages %>
 		<% end %>
 	</div>
@@ -23,5 +23,3 @@
 		<% end %>
 	</div>
 </div>
-
-<%= subscribe_to room_path(@room) %>
