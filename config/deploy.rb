@@ -116,6 +116,7 @@ namespace :private_pub do
       invoke 'private_pub:start'
     end
   end
-end
 
-after 'deploy:restart', 'private_pub:restart'
+  after 'deploy:restart', 'private_pub:restart'
+
+end
