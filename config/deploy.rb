@@ -23,13 +23,13 @@ set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Default settings
-set :foreman_use_sudo, false # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
-set :foreman_roles, :all
-set :foreman_template, 'upstart'
-set :foreman_options, ->{ {
-  user: 'deploy',
-  log: File.join(shared_path, 'log')
-} }
+# set :foreman_use_sudo, false # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
+# set :foreman_roles, :all
+# set :foreman_template, 'upstart'
+# set :foreman_options, ->{ {
+#   user: 'deploy',
+#   log: File.join(shared_path, 'log')
+# } }
 
 
 # Default value for default_env is {}
@@ -45,7 +45,8 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'unicorn:stop'
       invoke 'unicorn:start'
-      invoke 'foreman:setup'
+      #invoke 'foreman:setup'
+      run "cd #{deploy_to}/current && bundle exec rackup private_pub.ru -s thin -E production "
     end
   end
 
