@@ -2,7 +2,7 @@ var first_id = $('.message').first().attr('data-id');
 console.log(first_id);
 if (first_id > 1) {
 	$('.load-more').after('<%= escape_javascript(render @messages) %>');
-	if ( first_id = $('.message').first().attr('data-id') == <%= @first_message %> ){
+	if ( first_id = $('.message').first().attr('data-id') == <%= @first_message %> && first_id != null ){
 		console.log(first_id);
 		$('.loading-gif').remove();
 		$('.load-more').remove();
