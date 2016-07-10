@@ -47,7 +47,7 @@ namespace :deploy do
       invoke 'unicorn:stop'
       invoke 'unicorn:start'
       #invoke 'foreman:setup'
-      run "cd #{deploy_to}/current && bundle exec rackup private_pub.ru -s thin -E production "
+      #run "cd #{deploy_to}/current && bundle exec rackup private_pub.ru -s thin -E production "
     end
   end
 
@@ -61,7 +61,7 @@ namespace :deploy do
       # end
     end
   end
-
+end
 
 namespace :private_pub do
   desc "Start private_pub server"
@@ -92,5 +92,3 @@ namespace :private_pub do
 end
 
 after 'deploy:restart', 'private_pub:restart'
-
-end
