@@ -21,7 +21,7 @@ set :format, :airbrussh
 set :linked_files, %w{config/database.yml config/application.yml config/private_pub.yml config/dropbox.yml}
 # Default value for linked_dirs is []
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-set :private_pub_pid, -> { "/home/deploy/apps/chatrooomz/shared/tmp/pids/private_pub.pid" }
+set :private_pub_pid, -> { "/home/deploy/apps/chatrooomz/current/tmp/pids/private_pub.pid" }
 
 # Default settings
 # set :foreman_use_sudo, false # Set to :rbenv for rbenv sudo, :rvm for rvmsudo or true for normal sudo
