@@ -64,30 +64,45 @@ namespace :deploy do
 end
 
 namespace :private_pub do
+  # desc "Start private_pub server"
+  # task :start do
+  #   on roles(:app) do
+  #     within release_path do
+  #         execute :bundle, "exec rackup private_pub.ru -s thin -E production -D -P #{fetch(:private_pub_pid)}"
+  #     end
+  #   end
+  # end
+
+  # desc "Stop private_pub server"
+  # task :stop do
+  #   on roles(:app) do
+  #     within release_path do
+  #       execute "if [ -f #{fetch(:private_pub_pid)} ] && [ -e /proc/$(cat #{fetch(:private_pub_pid)}) ]; then kill -9 `cat #{fetch(:private_pub_pid)}`; fi"
+  #     end
+  #   end
+  # end
+
+  # desc "Restart private_pub server"
+  # task :restart do
+  #   on roles(:app) do
+  #     invoke 'private_pub:stop'
+  #     invoke 'private_pub:start'
+  #   end
+  # end
   desc "Start private_pub server"
   task :start do
-    on roles(:app) do
-      within release_path do
-          execute :bundle, "exec rackup private_pub.ru -s thin -E production -D -P #{fetch(:private_pub_pid)}"
-      end
-    end
+    execute "cd #{current_path};RAILS_ENV=production bundle exec rackup private_pub.ru -s thin -E production -D -P tmp/pids/private_pub.pid"
   end
 
   desc "Stop private_pub server"
   task :stop do
-    on roles(:app) do
-      within release_path do
-        execute "if [ -f #{fetch(:private_pub_pid)} ] && [ -e /proc/$(cat #{fetch(:private_pub_pid)}) ]; then kill -9 `cat #{fetch(:private_pub_pid)}`; fi"
-      end
-    end
+    execute "cd #{current_path};if [ -f tmp/pids/private_pub.pid ] && [ -e /proc/$(cat tmp/pids/private_pub.pid) ]; then kill -9 `cat tmp/pids/private_pub.pid`; fi"
   end
 
   desc "Restart private_pub server"
   task :restart do
-    on roles(:app) do
-      invoke 'private_pub:stop'
-      invoke 'private_pub:start'
-    end
+    stop
+    start
   end
 end
 
