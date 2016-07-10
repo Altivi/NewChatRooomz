@@ -91,18 +91,24 @@ namespace :private_pub do
   # end
   desc "Start private_pub server"
   task :start do
-    execute "cd #{current_path};RAILS_ENV=production bundle exec rackup private_pub.ru -s thin -E production -D -P tmp/pids/private_pub.pid"
+    on roles(:app) do
+      execute "cd #{current_path};RAILS_ENV=production bundle exec rackup private_pub.ru -s thin -E production -D -P tmp/pids/private_pub.pid"
+    end
   end
 
   desc "Stop private_pub server"
   task :stop do
-    execute "cd #{current_path};if [ -f tmp/pids/private_pub.pid ] && [ -e /proc/$(cat tmp/pids/private_pub.pid) ]; then kill -9 `cat tmp/pids/private_pub.pid`; fi"
+    on roles(:app) do
+      execute "cd #{current_path};if [ -f tmp/pids/private_pub.pid ] && [ -e /proc/$(cat tmp/pids/private_pub.pid) ]; then kill -9 `cat tmp/pids/private_pub.pid`; fi"
+    end
   end
 
   desc "Restart private_pub server"
   task :restart do
-    invoke 'private_pub:stop'
-    invoke 'private_pub:start'
+    on roles(:app) do
+      invoke 'private_pub:stop'
+      invoke 'private_pub:start'
+    end
   end
 end
 
