@@ -11,12 +11,16 @@ module Sessionable
 		@current_session ||= Session.find_by(access_token: access_token)
 	end
 
-	def current_user=(user)
-		@current_user = user
+	def current_session=(session)
+		@current_session = session
 	end
 
 	def current_user
 		@current_user ||= current_session.user
+	end
+
+	def current_user=(user)
+		@current_user = user
 	end
 
 	def current_user?(user)

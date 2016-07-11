@@ -15,25 +15,37 @@ class Api::V1::BaseController < ApplicationController
 		end
 
 		def authenticate_user!
-			unless request.headers["HTTP_ACCESS_TOKEN"]
-				render text: "Unauthorized, no access_token", status: :unauthorized
+			unless access_token = request.headers["HTTP_ACCESS_TOKEN"]
+				json_message "Unauthorized, no access_token", :unauthorized
 			else
-				if ses = Session.find_by_access_token(request.headers["HTTP_ACCESS_TOKEN"])
-					current_session = ses
-					if current_session.expired?
-						current_session.delete
-						render text: "Unauthorized, session expired", status: :unauthorized
-					else
-						current_session.touch
-					end
-				else
-					render text: "Unauthorized, session doesn't exists", status: :unauthorized
-				end
+				find_session(access_token)
 			end
 		end
 
-		def not_found
-			render json: { "error" : "Record not found" }, status: :not_found
+		def find_session(access_token)
+			if session = Session.find_by_access_token(access_token)
+				if session.expired?
+					session.delete
+					json_message "Unauthorized, session expired", :unauthorized
+				else
+					current_session = session
+					current_session.touch
+				end
+			else
+				json_message "Unauthorized, session doesn't exists", :unauthorized
+			end
+		end
+
+		def json_errors(obj,status)
+			render json: { errors: obj.errors.full_messages }, status: status
+		end
+
+		def json_message(msg,status)
+			render json: { message: msg }, status: status
+		end
+
+		def not_found(e)
+			render json: { error: e.message }, status: :not_found
 		end
 
 end

@@ -16,16 +16,16 @@ class Api::V1::RoomsController < Api::V1::BaseController
 		if @room.save
 			render @room, status: :created
 		else
-			render json: @room.errors, status: :unprocessable_entity
+			json_errors @room, :unprocessable_entity
 		end
 	end
 
 	def destroy
 		@room = current_user.rooms.find(params[:id])
 		if @room.destroy
-			render @room, status: :ok
+			json_message "Destroyed", :ok
 		else
-			render text: "Not Destroyed", status: :unprocessable_entity
+			json_message "Not Destroyed", :unprocessable_entity
 		end
 	end
 

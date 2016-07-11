@@ -6,32 +6,28 @@ class Api::V1::MessagesController < Api::V1::BaseController
 	def create
 		@message = @room.messages.build(message_params)
 		if @message.save!
-			render text: "Message created", status: :created
+			render @message, status: :created
 		else
-			render json: @message.errors, status: :unprocessable_entity
+			json_errors @message, :unprocessable_entity
 		end
 	end
 
 	def destroy
 		if @message.delete_for(current_user)
-			render text: "Destroyed", status: :ok
+			json_message "Destroyed", :ok
 		else
-			render text: "Not destroyed", status: :unprocessable_entity
+			json_message "Not destroyed", :ok :unprocessable_entity
 		end
 	end
 
 	private
 
 		def set_message
-			unless @message = @room.messages.find_by_id(params[:id])
-				render text: "Message not found", status: :not_found
-			end
+			@message = @room.messages.find(params[:id])
 		end
 
 		def set_room
-			unless @room = Room.find_by_id(params[:room_id])
-				render text: "Room not found", status: :not_found
-			end
+			@room = Room.find(params[:room_id])
 		end
 
 		def message_params
