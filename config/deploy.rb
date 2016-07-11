@@ -93,8 +93,7 @@ namespace :private_pub do
   task :start do
     on roles(:app) do
       within release_path do
-          execute :bundle, "exec rackup private_pub.ru -s thin -E production -D -P #{fetch(:private_pub_pid)}"
-
+          execute :bundle, "exec thin -C config/private_pub_thin.yml start"
       end
     end
   end
