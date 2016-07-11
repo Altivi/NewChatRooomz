@@ -1,2 +1,4 @@
-
+address: http://127.0.0.1
+port: 9292
+pid: <%= private_pub_pid %>
 daemonize: true
