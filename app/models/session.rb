@@ -9,9 +9,6 @@ class Session < ActiveRecord::Base
 	validates_presence_of :device_type
 
 	def expired?
-		3.times {puts ENV['SES_EXP_DATE'].to_i 
-		 			puts self.updated_at
-		 			puts Time.now }
 		self.updated_at + ENV['SES_EXP_DATE'].to_i < Time.now 
 	end
 
