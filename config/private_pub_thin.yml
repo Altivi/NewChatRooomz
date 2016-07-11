@@ -1,11 +1,2 @@
-environment: production
-chdir: /home/deploy/apps/chatrooomz/current
-address: http://127.0.0.1
-port: 9292
-pid: /home/deploy/apps/chatrooomz/current/tmp/pids/private_pub.pid
-rackup: /home/deploy/apps/chatrooomz/current/private_pub.ru
-log: /home/deploy/apps/chatrooomz/current/log/private_pub.log
-max_conns: 1024
-timeout: 30
-max_persistent_conns: 512
+
 daemonize: true

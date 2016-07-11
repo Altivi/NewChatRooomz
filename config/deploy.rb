@@ -93,7 +93,7 @@ namespace :private_pub do
   task :start do
     on roles(:app) do
       within release_path do
-          execute :bundle, "exec rackup private_pub.ru -s thin -E production"
+          execute :bundle, "exec thin -C config/private_pub_thin.yml -R private_pub.ru start"
       end
     end
   end
