@@ -1,9 +1,11 @@
 class Api::V1::BaseController < ApplicationController
 	# Prevent CSRF attacks by raising an exception.
 	# For APIs, you may want to use :null_session instead.
-	protect_from_forgery with: :null_session, only: Proc.new { |c| c.request.format.json? }
+	protect_from_forgery with: :null_session#, only: Proc.new { |c| c.request.format.json? }
 	before_action :destroy_session, :authenticate_user!
-	
+	rescue_from ActiveRecord::RecordNotFound, with: :not_found
+	respond_to :json
+
 	include Sessionable
 
 	private
@@ -28,7 +30,10 @@ class Api::V1::BaseController < ApplicationController
 					render text: "Unauthorized, session doesn't exists", status: :unauthorized
 				end
 			end
+		end
 
+		def not_found
+			render json: { "error" : "Record not found" }, status: :not_found
 		end
 
 end

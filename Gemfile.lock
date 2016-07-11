@@ -42,6 +42,11 @@ GEM
     arel (6.0.3)
     autoprefixer-rails (6.3.7)
       execjs
+    aws-sdk (1.66.0)
+      aws-sdk-v1 (= 1.66.0)
+    aws-sdk-v1 (1.66.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -96,8 +101,6 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    dropbox-sdk (1.6.5)
-      json
     em-http-request (1.1.5)
       addressable (>= 2.3.4)
       cookiejar (!= 0.3.1)
@@ -161,15 +164,12 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
-    paperclip (4.3.7)
+    paperclip (4.3.6)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    paperclip-dropbox (1.3.2)
-      dropbox-sdk (~> 1.3)
-      paperclip (>= 3.1, < 5)
     pg (0.18.4)
     phantomjs (2.1.1.0)
     pkg-config (1.1.7)
@@ -282,6 +282,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk (< 2.0)
   bootstrap-filestyle-rails (~> 1.2, >= 1.2.1)
   bootstrap-sass (~> 3.3, >= 3.3.6)
   bootstrap-will_paginate (= 0.0.10)
@@ -301,8 +302,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
-  paperclip (~> 4.3, >= 4.3.6)
-  paperclip-dropbox (~> 1.3, >= 1.3.2)
+  paperclip (= 4.3.6)
   pg (~> 0.15)
   phantomjs (~> 2.1, >= 2.1.1.0)
   private_pub

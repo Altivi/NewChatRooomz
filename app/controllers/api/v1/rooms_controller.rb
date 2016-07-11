@@ -1,6 +1,6 @@
 class Api::V1::RoomsController < Api::V1::BaseController
 	
-	before_action :set_room, only: [:show, :destroy]
+	before_action :set_room, only: [:show]
 	before_action :set_search, only: [:index]
 
 	def index
@@ -14,21 +14,18 @@ class Api::V1::RoomsController < Api::V1::BaseController
 	def create
 		@room = current_user.rooms.new(room_params)
 		if @room.save
-			render :show, status: :created
+			render @room, status: :created
 		else
 			render json: @room.errors, status: :unprocessable_entity
 		end
 	end
 
 	def destroy
-		if @room.creator?(current_user)
-			if @room.destroy
-				render text: "Destroyed", status: :ok
-			else
-				render text: "Not Destroyed", status: :unprocessable_entity
-			end
+		@room = current_user.rooms.find(params[:id])
+		if @room.destroy
+			render @room, status: :ok
 		else
-			render text: "You can't delete this room", status: :forbidden
+			render text: "Not Destroyed", status: :unprocessable_entity
 		end
 	end
 
@@ -39,9 +36,7 @@ class Api::V1::RoomsController < Api::V1::BaseController
 		end
 
 		def set_room
-			unless @room = Room.find_by_id(params[:id])
-				render text: "Room not found", status: :not_found
-			end
+			@room = Room.find(params[:id])
 		end
 
 		def room_params
