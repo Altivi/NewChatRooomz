@@ -93,7 +93,7 @@ namespace :private_pub do
   task :start do
     on roles(:app) do
       within release_path do
-          execute :bundle, "exec thin -C config/private_pub_thin.yml -R private_pub.ru start"
+          execute :bundle, "exec thin -C config/private_pub_thin.yml -p 9292 -R private_pub.ru start"
       end
     end
   end

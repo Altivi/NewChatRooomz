@@ -1,4 +1,4 @@
-address: http://127.0.0.1
-port: 9292
+# address: http://127.0.0.1
+# port: 9292
 pid: /home/deploy/apps/chatrooomz/current/tmp/pids/private_pub.pid
 daemonize: true
