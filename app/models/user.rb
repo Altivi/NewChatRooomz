@@ -11,13 +11,13 @@ class User < ActiveRecord::Base
 
 	devise :database_authenticatable, :registerable,
 				 :recoverable, :rememberable, :trackable, :validatable , :confirmable
-
-	has_attached_file :avatar, styles: { thumb: "100x100#" }#, default_url: "http://lunar.gsfc.nasa.gov/webdesign/nasa-logo.png"
+    mount_uploader :avatar, AvatarUploader
+	#has_attached_file :avatar, styles: { thumb: "100x100#" }, default_url: "http://lunar.gsfc.nasa.gov/webdesign/nasa-logo.png"
 						# storage: :dropbox,
 						# dropbox_credentials: Rails.root.join("config/dropbox.yml"),
 						# dropbox_options: {  path: proc { |style| "avatars/#{id}/#{avatar.original_filename}" } }
 
-	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+	#validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 	validates :nickname, uniqueness: true, presence: true, length: { in: 2..15 } , if: :active_or_choose_nickname?
 
 	#after_save :save_slow_url
