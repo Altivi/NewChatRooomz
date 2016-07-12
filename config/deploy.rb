@@ -93,7 +93,9 @@ namespace :private_pub do
   task :start do
     on roles(:app) do
       within release_path do
+        with rails_env: :production do
           execute :bundle, "exec thin -C config/private_pub_thin.yml -p 9292 -R private_pub.ru start"
+        end
       end
     end
   end
@@ -102,7 +104,9 @@ namespace :private_pub do
   task :stop do
     on roles(:app) do
       within current_path do
-        execute "if [ -f #{fetch(:private_pub_pid)} ] && [ -e /proc/$(cat #{fetch(:private_pub_pid)}) ]; then kill -9 `cat #{fetch(:private_pub_pid)}`; fi"
+        with rails_env: :production do
+          execute "if [ -f #{fetch(:private_pub_pid)} ] && [ -e /proc/$(cat #{fetch(:private_pub_pid)}) ]; then kill -9 `cat #{fetch(:private_pub_pid)}`; fi"
+        end
       end
     end
   end
