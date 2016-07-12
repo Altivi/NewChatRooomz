@@ -24,13 +24,9 @@ class Api::V1::BaseController < ApplicationController
     end
 
     def find_session(access_token)
-        if session = Session.find_by_access_token(access_token)
-            if session.expired?					###
-                render_errors "Unauthorized, session expired", :unauthorized
-            else
-                current_session = session
-                current_session.touch
-            end
+        if session = Session.non_expired.find_by_access_token(access_token)
+            current_session = session
+            current_session.touch
         else
             render_errors "Unauthorized, session doesn't exists", :unauthorized
         end
