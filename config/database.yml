@@ -61,6 +61,8 @@ development:
 test:
   <<: *default
   database: ChatRooomz_test
+  username: pguser
+  password: 123123
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

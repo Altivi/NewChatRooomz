@@ -30,6 +30,7 @@ gem 'ransack'
 gem 'whenever'
 gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
 gem 'hirb'
+gem 'activeadmin', '~> 1.0.0.pre4'
 
 group :development, :test do
   gem 'byebug'
