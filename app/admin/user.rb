@@ -13,7 +13,7 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
-  action_item only: :index do
+  action_item :index, only: :index do
     link_to 'Upload users', action: 'upload_csv'
   end
 

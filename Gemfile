@@ -34,6 +34,9 @@ gem 'activeadmin', '~> 1.0.0.pre4'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.4'
+  gem 'rspec_api_documentation'
+  gem 'raddocs'
 end
 
 group :development do
