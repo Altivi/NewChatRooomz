@@ -5,8 +5,6 @@ class User < ActiveRecord::Base
 	has_many :deleted_messages
 	has_many :sessions
 
-	accepts_nested_attributes_for :sessions
-
 	attr_accessor :delete_avatar
 
 	devise :database_authenticatable, :registerable,

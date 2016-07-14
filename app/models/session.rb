@@ -10,21 +10,19 @@ class Session < ActiveRecord::Base
 		message: "%{value} is not valid" }, allow_blank: true
 	validates_presence_of :device_type
 
-	
-
 	def expired?
 		self.updated_at + ENV['SES_EXP_DATE'].to_i < Time.now 
-	end	
+	end
+
+	def self.generate_token
+		SecureRandom.uuid.gsub(/\-/,'')
+	end
 
 	private
 
 	def set_access_token
 		return if access_token.present?
-		self.access_token = generate_access_token
-	end
-
-	def generate_access_token
-		SecureRandom.uuid.gsub(/\-/,'')
+		self.access_token = Session.generate_token
 	end
 
 	def delete_old_sessions

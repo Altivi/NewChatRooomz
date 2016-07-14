@@ -1,0 +1,35 @@
+{
+  "resource": "Rooms",
+  "http_method": "GET",
+  "route": "/api/v1/rooms/:id",
+  "description": "Getting a specific room",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/api/v1/rooms/820",
+      "request_body": null,
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Host": "example.org"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"room\": {\n    \"id\": 820,\n    \"title\": \"857643116965907\",\n    \"creator_id\": 1340,\n    \"created_at\": \"2016-07-14T17:51:29.332+03:00\",\n    \"updated_at\": \"2016-07-14T17:51:29.332+03:00\"\n  }\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/rooms/820\" -X GET \\\n\t-H \"Access-Token: 242ac39f8b384f0cbeb54f9d6c4c6658\" \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
+    }
+  ]
+}

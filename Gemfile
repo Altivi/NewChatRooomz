@@ -37,6 +37,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'rspec_api_documentation'
   gem 'raddocs'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'faker'
 end
 
 group :development do

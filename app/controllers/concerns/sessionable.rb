@@ -17,6 +17,7 @@ module Sessionable
 
   def current_user
     @current_user ||= current_session.user
+    @current_user
   end
 
   def current_user=(user)

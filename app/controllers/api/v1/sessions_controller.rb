@@ -3,8 +3,8 @@ class Api::V1::SessionsController < Api::V1::BaseController
   skip_before_action :authenticate_user!, only: [:create]
 
   def create
-    user = User.find_by(email: user_session_params[:email].downcase)
-    if user && user.valid_password?(user_session_params[:password])
+    user = User.find_by(email: user_params[:email].downcase)
+    if user && user.valid_password?(user_params[:password])
       create_for_confirmed_user(user)
     else
       render_message "Invalid email/password combination"
@@ -19,11 +19,12 @@ class Api::V1::SessionsController < Api::V1::BaseController
   private
 
   def session_create(user)
-    new_session = user.sessions.build(user_session_params[:session_attributes])
+    new_session = user.sessions.build(session_params)
     if new_session.save
       render user, status: :created
       response.headers["access_token"] = new_session.access_token
     else
+      puts new_session.errors.full_messages.join(', ')
       render_errors new_session.errors.full_messages.join(', '), :unprocessable_entity
     end
   end
@@ -36,9 +37,13 @@ class Api::V1::SessionsController < Api::V1::BaseController
     end
   end
 
-  def user_session_params
-    params.require(:user).permit(:email, :password, { session_attributes: [:device_token, :push_token, :device_type] } )
+  def user_params
+    params.require(:user).permit(:email, :password)
     # { "user" : { "email" : "metallfighters@gmail.com", "password" : "123123", "session_attributes" : { "device_token" : "df5fa54gsf22ee", "device_type" : "android", "push_token" : "8sadf23sdf4f41" } } }
+  end
+
+  def session_params
+    params.require(:session).permit(:device_token, :push_token, :device_type)
   end
 
 end
