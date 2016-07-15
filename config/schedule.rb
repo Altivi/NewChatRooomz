@@ -19,12 +19,12 @@
 
 # Learn more: http://github.com/javan/whenever
 
-# every :day, :at => '12:00am' do
-#    UserMailer.last_rooms_snapshot.deliver_now
-# end
-
-set :environment, :development
-
 every :day, :at => '12:00am' do
-   runner "User.last_rooms_snapshot"
+   UserMailer.last_rooms_snapshot.deliver_now
 end
+
+# set :environment, :development
+
+# every :day, :at => '12:00am' do
+#    runner "User.last_rooms_snapshot"
+# end
