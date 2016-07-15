@@ -1,18 +1,5 @@
 ActiveAdmin.register User do
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-#   permit_params :email, :password, :nickname
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
-
   action_item :index, only: :index do
     link_to 'Upload users', action: 'upload_csv'
   end

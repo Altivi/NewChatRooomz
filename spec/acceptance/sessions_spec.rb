@@ -2,8 +2,6 @@ require 'acceptance_helper'
 
 resource "Sessions", acceptance: true do
   let(:user) { FactoryGirl.create(:user_with_session) }
-  # let(:user) { FactoryGirl.create(:user_with_room_and_session) }
-  # let(:room) { FactoryGirl.create(:room) }
 
   before do
     header 'Content-Type', 'application/json'

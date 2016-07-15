@@ -1,7 +1,6 @@
 require 'acceptance_helper'
 
 resource "Rooms", acceptance: true do
-  # let(:user) { FactoryGirl.create(:user) }
   let(:user) { FactoryGirl.create(:user_with_room_and_session) }
   let(:room) { FactoryGirl.create(:room) }
 

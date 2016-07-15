@@ -39,7 +39,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
 
   def user_params
     params.require(:user).permit(:email, :password)
-    # { "user" : { "email" : "metallfighters@gmail.com", "password" : "123123", "session_attributes" : { "device_token" : "df5fa54gsf22ee", "device_type" : "android", "push_token" : "8sadf23sdf4f41" } } }
   end
 
   def session_params
