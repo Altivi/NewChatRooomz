@@ -12,7 +12,6 @@ resource "Rooms", acceptance: true do
 
   get "/api/v1/rooms" do
     example_request "Listing rooms" do
-      explanation "List all the rooms in the system"
       expect(status).to eq 200
     end
   end

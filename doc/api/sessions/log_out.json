@@ -29,7 +29,7 @@
         "Content-Type": "application/json; charset=utf-8"
       },
       "response_content_type": "application/json; charset=utf-8",
-      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/logout\" -d '' -X DELETE \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Access-Token: e8c46de71123472090ee713066bf4d0d\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
+      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/logout\" -d '' -X DELETE \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Access-Token: 9758e88c99b6402fa3d7b179ba2f618b\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
     }
   ]
 }

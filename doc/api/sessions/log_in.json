@@ -49,7 +49,7 @@
     {
       "request_method": "POST",
       "request_path": "/api/v1/login",
-      "request_body": "{\"user\":{\"email\":\"antonio@grahamschoen.biz\",\"password\":\"123123\"},\"session\":{\"device_type\":\"ios\",\"device_token\":\"f1abe2c5fee2659d00437639e2a75d5e\",\"push_token\":\"156a7478a8a38df36b26028703986777\"}}",
+      "request_body": "{\"user\":{\"email\":\"odell@jones.name\",\"password\":\"123123\"},\"session\":{\"device_type\":\"ios\",\"device_token\":\"9ce7fe9f2c34f2379df1fe43aa398b8b\",\"push_token\":\"aaa11cf326881b2bf1d2218d9736035e\"}}",
       "request_headers": {
         "Content-Type": "application/json",
         "Host": "example.org"
@@ -59,12 +59,12 @@
       "request_content_type": "application/json",
       "response_status": 201,
       "response_status_text": "Created",
-      "response_body": "{\n  \"id\": 1343,\n  \"email\": \"antonio@grahamschoen.biz\",\n  \"nickname\": \"agriculturist\",\n  \"sign_in_count\": 0,\n  \"avatar\": {\n    \"avatar\": {\n      \"url\": null,\n      \"thumb\": {\n        \"url\": null\n      }\n    }\n  },\n  \"created_at\": \"2016-07-14T17:51:29.415+03:00\",\n  \"updated_at\": \"2016-07-14T17:51:29.417+03:00\"\n}",
+      "response_body": "{\n  \"id\": 1379,\n  \"email\": \"odell@jones.name\",\n  \"nickname\": \"web developer\",\n  \"sign_in_count\": 0,\n  \"avatar\": {\n    \"avatar\": {\n      \"url\": null,\n      \"thumb\": {\n        \"url\": null\n      }\n    }\n  },\n  \"created_at\": \"2016-07-15T09:55:15.667+03:00\",\n  \"updated_at\": \"2016-07-15T09:55:15.668+03:00\"\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },
       "response_content_type": "application/json; charset=utf-8",
-      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/login\" -d '{\"user\":{\"email\":\"antonio@grahamschoen.biz\",\"password\":\"123123\"},\"session\":{\"device_type\":\"ios\",\"device_token\":\"f1abe2c5fee2659d00437639e2a75d5e\",\"push_token\":\"156a7478a8a38df36b26028703986777\"}}' -X POST \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
+      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/login\" -d '{\"user\":{\"email\":\"odell@jones.name\",\"password\":\"123123\"},\"session\":{\"device_type\":\"ios\",\"device_token\":\"9ce7fe9f2c34f2379df1fe43aa398b8b\",\"push_token\":\"aaa11cf326881b2bf1d2218d9736035e\"}}' -X POST \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
     }
   ]
 }

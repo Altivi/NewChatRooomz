@@ -36,7 +36,7 @@
     {
       "request_method": "POST",
       "request_path": "/api/v1/signup",
-      "request_body": "{\"user\":{\"email\":\"aaliyah@bodekunde.co\",\"password\":\"123123\",\"avatar\":\"https://robohash.org/my-own-slug.png?size=100x100\\u0026set=set1\",\"nickname\":\"Lorine Hammes\"}}",
+      "request_body": "{\"user\":{\"email\":\"ethelyn_oreilly@boyle.org\",\"password\":\"123123\",\"avatar\":\"https://robohash.org/my-own-slug.png?size=100x100\\u0026set=set1\",\"nickname\":\"Elias Considine\"}}",
       "request_headers": {
         "Content-Type": "application/json",
         "Host": "example.org"
@@ -51,7 +51,7 @@
         "Content-Type": "application/json; charset=utf-8"
       },
       "response_content_type": "application/json; charset=utf-8",
-      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/signup\" -d '{\"user\":{\"email\":\"aaliyah@bodekunde.co\",\"password\":\"123123\",\"avatar\":\"https://robohash.org/my-own-slug.png?size=100x100\\u0026set=set1\",\"nickname\":\"Lorine Hammes\"}}' -X POST \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
+      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/signup\" -d '{\"user\":{\"email\":\"ethelyn_oreilly@boyle.org\",\"password\":\"123123\",\"avatar\":\"https://robohash.org/my-own-slug.png?size=100x100\\u0026set=set1\",\"nickname\":\"Elias Considine\"}}' -X POST \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
     }
   ]
 }

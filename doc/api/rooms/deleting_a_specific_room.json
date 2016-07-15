@@ -13,7 +13,7 @@
   "requests": [
     {
       "request_method": "DELETE",
-      "request_path": "/api/v1/rooms/823",
+      "request_path": "/api/v1/rooms/847",
       "request_body": null,
       "request_headers": {
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@
         "Content-Type": "application/json; charset=utf-8"
       },
       "response_content_type": "application/json; charset=utf-8",
-      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/rooms/823\" -d '' -X DELETE \\\n\t-H \"Access-Token: ab316beea42d4134a58dc6a2a6182bd8\" \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
+      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/rooms/847\" -d '' -X DELETE \\\n\t-H \"Access-Token: 96cb92fea640457381dbb471662d58cd\" \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
     }
   ]
 }
