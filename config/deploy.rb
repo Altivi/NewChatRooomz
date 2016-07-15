@@ -20,7 +20,7 @@ set :format, :airbrussh
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 set :linked_files, %w{config/database.yml config/application.yml config/private_pub.yml config/private_pub_thin.yml config/dropbox.yml}
 # Default value for linked_dirs is []
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets tmp/images vendor/bundle public/system}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets tmp/images/rooms_snapshots vendor/bundle public/system}
 set :private_pub_pid, -> { "/home/deploy/apps/chatrooomz/current/tmp/pids/thin.pid" }
 
 # Default settings
