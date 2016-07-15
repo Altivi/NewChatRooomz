@@ -31,14 +31,14 @@ gem 'whenever'
 gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
 gem 'hirb'
 gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'rspec-rails', '~> 3.4'
+gem 'rspec_api_documentation'
+gem 'raddocs'
+gem 'factory_girl_rails', '~> 4.0'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
-  gem 'rspec-rails', '~> 3.4'
-  gem 'rspec_api_documentation'
-  gem 'raddocs'
-  gem 'factory_girl_rails', '~> 4.0'
-  gem 'faker'
 end
 
 group :development do
