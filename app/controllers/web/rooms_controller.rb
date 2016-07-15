@@ -55,7 +55,11 @@ class Web::RoomsController < Web::BaseController
 		def take_snapshot
 			Dir.chdir(Rails.root.join('tmp', 'images', 'rooms_snapshots'))
 			check_snapshots_count
-			Thread.new do
+			if Rails.env.development?
+				Thread.new do
+					system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{rooms_url} rooms-#{Time.now.to_i}.png"
+				end
+			else
 				system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{rooms_url} rooms-#{Time.now.to_i}.png"
 			end
 		end
