@@ -21,14 +21,13 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
   host: localhost
-  username: pguser
-  password: 123123
 
 
 development:
   <<: *default
   database: ChatRooomz_development
-
+  username: pguser
+  password: 123123
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -62,6 +61,8 @@ development:
 test:
   <<: *default
   database: ChatRooomz_test
+  username: pguser
+  password: 123123
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -84,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: ChatRooomz_production
-  username: ChatRooomz
-  password: <%= ENV['CHATROOOMZ_DATABASE_PASSWORD'] %>
+  database: chatrooomz_production
+  username: deployer
+  password: 123123

@@ -1,0 +1,40 @@
+{
+  "resource": "Rooms",
+  "http_method": "POST",
+  "route": "/api/v1/rooms",
+  "description": "Create a specific room",
+  "explanation": null,
+  "parameters": [
+    {
+      "required": true,
+      "scope": "room",
+      "name": "title",
+      "description": "Room title"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "/api/v1/rooms",
+      "request_body": "{\"room\":{\"title\":\"919479458181175\"}}",
+      "request_headers": {
+        "Content-Type": "application/json",
+        "Host": "example.org"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 201,
+      "response_status_text": "Created",
+      "response_body": "{\n  \"id\": 846,\n  \"title\": \"919479458181175\",\n  \"creator_id\": 1377,\n  \"created_at\": \"2016-07-15T09:55:15.632+03:00\",\n  \"updated_at\": \"2016-07-15T09:55:15.632+03:00\"\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": "curl \"http://ec2-52-39-91-201.us-west-2.compute.amazonaws.com/api/v1/rooms\" -d '{\"room\":{\"title\":\"919479458181175\"}}' -X POST \\\n\t-H \"Access-Token: f618b97b40124a4cbe957ab035abdd12\" \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
+    }
+  ]
+}

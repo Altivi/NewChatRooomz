@@ -5,7 +5,7 @@ module MessagesHelper
 	end
 
 	def avatar_present?(message)
-		message.author.fast_avatar_url.present?
+		message.author.avatar.present?
 	end
 
 	def avatar_or_nickname(message)

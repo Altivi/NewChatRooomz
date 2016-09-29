@@ -1,0 +1,87 @@
+{
+  "resources": [
+    {
+      "name": "Messages",
+      "examples": [
+        {
+          "description": "Create a message",
+          "link": "messages/create_a_message.json",
+          "groups": "all",
+          "route": "/api/v1/rooms/:id/messages",
+          "method": "post"
+        },
+        {
+          "description": "Deleting a specific message",
+          "link": "messages/deleting_a_specific_message.json",
+          "groups": "all",
+          "route": "/api/v1/rooms/:room_id/messages/:id",
+          "method": "delete"
+        }
+      ]
+    },
+    {
+      "name": "Rooms",
+      "examples": [
+        {
+          "description": "Listing rooms",
+          "link": "rooms/listing_rooms.json",
+          "groups": "all",
+          "route": "/api/v1/rooms",
+          "method": "get"
+        },
+        {
+          "description": "Getting a specific room",
+          "link": "rooms/getting_a_specific_room.json",
+          "groups": "all",
+          "route": "/api/v1/rooms/:id",
+          "method": "get"
+        },
+        {
+          "description": "Create a specific room",
+          "link": "rooms/create_a_specific_room.json",
+          "groups": "all",
+          "route": "/api/v1/rooms",
+          "method": "post"
+        },
+        {
+          "description": "Deleting a specific room",
+          "link": "rooms/deleting_a_specific_room.json",
+          "groups": "all",
+          "route": "/api/v1/rooms/:id",
+          "method": "delete"
+        }
+      ]
+    },
+    {
+      "name": "Sessions",
+      "examples": [
+        {
+          "description": "Log in",
+          "link": "sessions/log_in.json",
+          "groups": "all",
+          "route": "/api/v1/login",
+          "method": "post"
+        },
+        {
+          "description": "Log out",
+          "link": "sessions/log_out.json",
+          "groups": "all",
+          "route": "/api/v1/logout",
+          "method": "delete"
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "examples": [
+        {
+          "description": "Sign up",
+          "link": "users/sign_up.json",
+          "groups": "all",
+          "route": "/api/v1/signup",
+          "method": "post"
+        }
+      ]
+    }
+  ]
+}

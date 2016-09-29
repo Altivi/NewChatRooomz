@@ -1,8 +1,0 @@
-$('#error_explanation').remove();
-<% if @room.errors.empty? %>
-	$('#newRoomModal').modal('toggle');
-	$('#new_room').trigger("reset");
-	$('#all_rooms').prepend('<%= escape_javascript(render @room) %>');
-<% else %>
-	$('#newRoomModal .modal-dialog .modal-content .modal-body').prepend("<%= escape_javascript(render 'shared/error_messages', object: @room) %>");
-<% end %>

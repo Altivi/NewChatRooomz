@@ -1,35 +1,57 @@
 Rails.application.routes.draw do
 
-  get 'home/index'
 
-  devise_for :users, path: "auth", controllers: { registrations: 'auth/registrations', sessions: 'auth/sessions' }
-  devise_scope :user do
-    get "/login" => "auth/sessions#new"
-    post "/login" => "auth/sessions#create"
-    get "/signup" => "auth/registrations#new"
-    post "/signup" => "auth/registrations#create"
-    delete "/logout" => "auth/sessions#destroy"
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  scope module: 'web' do
+    
+    get 'home/index'
 
-    get "/auth/settings/account" => "auth/registrations#edit"
-    put "/auth/settings/account" => "auth/registrations#update"
-    get "/auth/settings/profile" => "auth/registrations#profile_settings"
-    put "/auth/settings/profile" => "auth/registrations#profile_settings_update"
+    devise_for :users, path: "auth", controllers: { registrations: 'web/auth/registrations', sessions: 'web/auth/sessions', confirmations: 'web/auth/confirmations', passwords: 'web/auth/passwords' }
+    devise_scope :user do
+      get "/login" => "auth/sessions#new"
+      post "/login" => "auth/sessions#create"
+      get "/signup" => "auth/registrations#new"
+      post "/signup" => "auth/registrations#create"
+      delete "/logout" => "auth/sessions#destroy"
+
+      get "/auth/settings/account" => "auth/registrations#edit"
+      put "/auth/settings/account" => "auth/registrations#update"
+      get "/auth/settings/profile" => "auth/registrations#profile_settings"
+      put "/auth/settings/profile" => "auth/registrations#profile_settings_update"
+    end
+
+    authenticated :user do
+       root 'rooms#index'
+    end
+
+    unauthenticated :user do
+      get "/" => "home#index"
+    end
+
+    resources :after_signup
+
+    resources :rooms, only: [:index, :show, :create, :destroy] do
+      resources :messages, only: [:create, :destroy]
+      collection { post :search, to: 'rooms#index' }
+    end
   end
 
-  authenticated :user do
-     root 'rooms#index'
-  end
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :rooms, only: [:index, :show, :create, :destroy] do
+        resources :messages, only: [:create, :destroy]
+        collection { post :search, to: 'rooms#index' }
+      end
 
-  unauthenticated :user do
-    get "/" => "home#index"
-  end
+      post "/login" => "sessions#create"
+      post "/signup" => "registrations#create"
+      delete "/logout" => "sessions#destroy"
 
-  resources :after_signup
-
-  resources :rooms do
-    resources :messages
-    collection { post :search, to: 'rooms#index' }
+    end
   end
+ 
+  mount Raddocs::App => "/api_docs"
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
