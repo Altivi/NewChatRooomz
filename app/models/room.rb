@@ -7,7 +7,7 @@ class Room < ActiveRecord::Base
 
 	validates_presence_of :creator_id
 	validates :title, uniqueness: true, length: { maximum: 25 }, presence: true
-
+	
 	def creator?(user)
 		creator == user
 	end

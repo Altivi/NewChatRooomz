@@ -1,20 +1,23 @@
 class RoomsController < ApplicationController
 
+  PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'rooms_snapshot.js')
+
   before_action :set_room, only: [:show, :destroy]
   before_action :set_search, only: [:index]
-  #after_action :take_snapshot, only: [:create]
+  after_action :take_snapshot, only: [:create]
 
   def index
     @rooms = @q.result.includes(:creator).page(params[:page]).per_page(10)
     @room = Room.new
-    @kit = IMGKit.new(render_to_string 'rooms/index')
-
-    respond_to do |format|
-      format.html
-      format.jpg do
-        send_data(@kit.to_jpg, :type => "image/jpeg", :disposition => 'inline')
-      end
-    end
+    # @kit = IMGKit.new(render_to_string(:template => 'rooms/index.html.erb', :layout => false))
+    # @kit.stylesheets << self.class.helpers.asset_path('application.scss') #Rails.root.join('app', 'assets', 'stylesheets', 'custom.css.scss')
+    # @kit.javascripts << Rails.root.join('app', 'assets', 'javascripts', 'application.js')
+    # respond_to do |format|
+    #   format.html
+    #   format.jpg do
+    #     send_data(@kit.to_jpg, :type => "image/jpeg", :disposition => 'inline')
+    #   end
+    # end
   end
 
   def show
@@ -56,6 +59,21 @@ class RoomsController < ApplicationController
   end
 
   private
+
+    def take_snapshot
+      Dir.chdir(Rails.root.join('app', 'assets', 'images', 'rooms_snapshots'))
+      check_snapshots_count
+      Thread.new do
+        system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{rooms_url} rooms-#{Time.now.to_i}.png"
+      end
+    end
+
+    def check_snapshots_count
+      curr_dir_files = Dir["**/*"]
+      if curr_dir_files.length >= 5
+        File.delete(curr_dir_files.min) if File.exist?(curr_dir_files.min)
+      end
+    end
 
     def set_room
       @room = Room.find(params[:id])

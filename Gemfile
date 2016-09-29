@@ -23,8 +23,8 @@ gem 'wicked', '~> 1.3'
 gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'ransack'
-gem 'imgkit'
-gem 'wkhtmltoimage-binary'
+gem 'whenever'
+gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
 
 group :development, :test do
   gem 'byebug'

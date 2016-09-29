@@ -33,4 +33,8 @@ class User < ActiveRecord::Base
 	# 	end
 	# end
 
+	def self.last_rooms_snapshot
+	  UserMailer.last_rooms_snapshot.deliver_now
+	end
+
 end
